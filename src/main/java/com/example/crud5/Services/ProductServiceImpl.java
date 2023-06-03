@@ -27,10 +27,15 @@ public class ProductServiceImpl {
     public Product updateProduct(Long id, Product updatedProduct) {
         Product existingProduct = getProductById(id);
         if (existingProduct != null) {
-            existingProduct.setProductName(updatedProduct.getProductName());
-            existingProduct.setPrice(updatedProduct.getPrice());
-            existingProduct.setQuantity(updatedProduct.getQuantity());
-
+            if (updatedProduct.getProductName() != null) {
+                existingProduct.setProductName(updatedProduct.getProductName());
+            }
+            if (updatedProduct.getPrice() != null) {
+                existingProduct.setPrice(updatedProduct.getPrice());
+            }
+            if (updatedProduct.getQuantity() != null) {
+                existingProduct.setQuantity(updatedProduct.getQuantity());
+            }
 
             return productRepo.save(existingProduct);
         }
